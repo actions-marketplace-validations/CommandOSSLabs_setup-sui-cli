@@ -10,7 +10,7 @@ inputs:
     required: false
     default: testnet
   private_key:
-    description: Sui private key to import into the local keystore. When omitted, the action only installs the CLI.
+    description: Sui private key to import into the local keystore (accepted by `sui keytool import <PRIVATE_KEY> ed25519`, typically `suiprivkey...`; obtain with `sui keytool export --key-identity <SUI_ADDRESS>`). When omitted, the action only installs the CLI.
     required: false
   version:
     description: Sui CLI version tag to install.
