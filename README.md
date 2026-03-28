@@ -25,6 +25,9 @@ Sui CLI is the official command-line tool for interacting with the [Sui blockcha
 - `rpc_url`: Resolved RPC URL for the selected network.
 - `active_address`: Imported address set as the active Sui address.
 
+> [!NOTE]
+> If `private_key` is omitted, the action only installs the Sui CLI and does not set outputs.
+
 ## Examples
 
 Install only:
@@ -43,16 +46,3 @@ Install and configure wallet:
     network: testnet
     private_key: ${{ secrets.SUI_DEPLOYER_PRIVATE_KEY }}
 ```
-
-## Notes
-
-- If `private_key` is omitted, the action only installs the Sui CLI and does not set outputs.
-- If `private_key` is provided, the action imports the key, switches environment and address, and sets `rpc_url` and `active_address`.
-
-## Development
-
-- Runner requirements: supported GitHub runners with network access to `github.com/MystenLabs/sui` release artifacts. Current asset mapping covers Linux x64/arm64, macOS x64/arm64, and Windows x64.
-- Source file: `src/index.ts`
-- Bundled runtime file: `dist/index.mjs`
-- Build command: `bun run build`
-- Cache behavior: restores and saves the Sui binary with `@actions/cache` using runner OS, architecture, and version in the cache key.
