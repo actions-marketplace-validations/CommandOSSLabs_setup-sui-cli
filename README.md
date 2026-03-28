@@ -18,15 +18,15 @@ Install a specific Sui CLI release and optionally configure a deployer wallet fo
 Install only:
 
 ```yaml
-- name: Set up Sui CLI
-  uses: ./.github/actions/setup-sui-cli
+- name: 📦 Setup Sui CLI
+  uses: CommandOSSLabs/setup-sui-cli@v1
 ```
 
 Install and configure wallet:
 
 ```yaml
-- name: Set up Sui CLI
-  uses: ./.github/actions/setup-sui-cli
+- name: 📦 Setup Sui CLI
+  uses: CommandOSSLabs/setup-sui-cli@v1
   with:
     network: testnet
     private_key: ${{ secrets.SUI_DEPLOYER_PRIVATE_KEY }}
@@ -38,12 +38,11 @@ Workflows using deployment environments such as `dev`, `staging`, and `productio
 
 - If `private_key` is omitted, the action only installs the Sui CLI and does not set outputs.
 - If `private_key` is provided, the action imports the key, switches environment and address, and sets `rpc_url` and `active_address`.
-- If the requested version is already present at `~/.local/bin/sui`, the action reuses it.
 
 ## Development
 
 - Runner requirements: supported GitHub runners with network access to `github.com/MystenLabs/sui` release artifacts. Current asset mapping covers Linux x64/arm64, macOS x64/arm64, and Windows x64.
 - Source file: `index.ts`
-- Bundled runtime file: `dist/index.js`
+- Bundled runtime file: `dist/index.mjs`
 - Build command: `bun run build`
 - Cache behavior: restores and saves the Sui binary with `@actions/cache` using runner OS, architecture, and version in the cache key.
