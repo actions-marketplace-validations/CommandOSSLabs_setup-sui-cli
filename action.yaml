@@ -1,5 +1,8 @@
 name: Setup Sui CLI
 description: Install a specific Sui CLI version and configure a deployer wallet for a target network.
+branding:
+  icon: box
+  color: blue
 
 inputs:
   network:
