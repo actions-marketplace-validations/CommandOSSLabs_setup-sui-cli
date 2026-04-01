@@ -28,6 +28,16 @@ Sui CLI is the official command-line tool for interacting with the [Sui blockcha
 > [!NOTE]
 > If `private_key` is omitted, the action only installs the Sui CLI and does not set outputs.
 
+## Supported Platforms
+
+| OS      | Architecture |
+| ------- | ------------ |
+| Linux   | x64          |
+| Linux   | arm64        |
+| macOS   | x64          |
+| macOS   | arm64        |
+| Windows | x64          |
+
 ## Examples
 
 Install only:
