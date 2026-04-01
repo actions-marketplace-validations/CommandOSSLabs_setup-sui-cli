@@ -9,7 +9,8 @@
     "node": ">=24"
   },
   "scripts": {
-    "build": "tsdown --minify"
+    "build": "tsdown --minify",
+    "test:act": "act workflow_dispatch -W action-test.yml -j test-action --container-architecture linux/amd64"
   },
   "devDependencies": {
     "@actions/cache": "^4.1.0",

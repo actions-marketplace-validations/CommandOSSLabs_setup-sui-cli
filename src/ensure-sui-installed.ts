@@ -11,6 +11,11 @@ import {
 } from './platform.ts'
 import { runCommand } from './run-command.ts'
 
+function extractSemver(value: string): string | null {
+  const match = value.match(/\d+\.\d+\.\d+/)
+  return match ? match[0] : null
+}
+
 export async function ensureSuiInstalled(
   version: string,
   installDir: string,
@@ -32,12 +37,27 @@ export async function ensureSuiInstalled(
   let shouldInstall = true
   try {
     const { stdout } = await runCommand(suiBinPath, ['--version'])
-    if (stdout.includes(version)) {
+    const installedSemver = extractSemver(stdout)
+    const requestedSemver = extractSemver(version)
+    const isRequestedVersionInstalled =
+      stdout.includes(version) ||
+      (installedSemver !== null &&
+        requestedSemver !== null &&
+        installedSemver === requestedSemver)
+
+    if (isRequestedVersionInstalled) {
       core.info(`Using existing Sui CLI ${version}`)
       core.info(stdout)
       shouldInstall = false
+    } else {
+      core.info(
+        `Cached Sui CLI version mismatch. requested=${version} detected=${stdout.trim()}`
+      )
     }
-  } catch {
+  } catch (error) {
+    core.warning(
+      `Failed to execute cached Sui CLI: ${error instanceof Error ? error.message : String(error)}`
+    )
     shouldInstall = true
   }
 
