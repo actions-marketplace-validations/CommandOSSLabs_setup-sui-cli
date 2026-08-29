@@ -26,7 +26,9 @@ export async function configureWallet(
   ])
   core.info(`Import result: ${importResultRaw.stdout}`)
 
-  const deployerAddress = resolveDeployerAddress(JSON.parse(importResultRaw.stdout))
+  const deployerAddress = resolveDeployerAddress(
+    JSON.parse(importResultRaw.stdout)
+  )
 
   if (!deployerAddress) {
     throw new Error('Failed to import deployer key or resolve deployer address')

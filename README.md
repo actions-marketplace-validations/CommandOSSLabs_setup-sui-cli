@@ -8,11 +8,13 @@ Sui CLI is the official command-line tool for interacting with the [Sui blockcha
 
 ## Inputs
 
-| Input         | Default           | Description                                   |
-| ------------- | ----------------- | --------------------------------------------- |
-| `network`     | `testnet`         | Supported values are `mainnet` and `testnet`. |
-| `version`     | `mainnet-v1.68.1` | Sui CLI version tag to install.               |
-| `private_key` | -                 | A Bech32-formatted private key to import      |
+| Input         | Default   | Description                                   |
+| ------------- | --------- | --------------------------------------------- |
+| `network`     | `testnet` | Supported values are `mainnet` and `testnet`. |
+| `version`     | -         | Sui CLI version tag to install.               |
+| `private_key` | -         | A Bech32-formatted private key to import      |
+
+If `version` is omitted, the action fetches the latest network-specific release tag from the official [MystenLabs/sui](https://github.com/MystenLabs/sui/releases) repository.
 
 > [!TIP]
 > Get an existing key in the correct Bech32 format:
@@ -56,3 +58,13 @@ Install and configure wallet:
     network: testnet
     private_key: ${{ secrets.SUI_DEPLOYER_PRIVATE_KEY }}
 ```
+
+## License
+
+This project is licensed under the [Apache License 2.0](LICENSE).
+
+---
+
+<p align="center">
+  <strong>Built with ❤️ by the CommandOSS Team</strong>
+</p>

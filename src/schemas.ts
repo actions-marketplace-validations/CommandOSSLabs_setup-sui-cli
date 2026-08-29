@@ -9,10 +9,7 @@ export const SuiEnvEntrySchema = z
 
 export const SuiEnvsSchema = z.array(SuiEnvEntrySchema)
 
-export const SuiEnvsWithActiveSchema = z.tuple([
-  SuiEnvsSchema,
-  z.string(),
-])
+export const SuiEnvsWithActiveSchema = z.tuple([SuiEnvsSchema, z.string()])
 
 export const SuiKeyImportSchema = z
   .object({

@@ -6,16 +6,42 @@ branding:
 
 inputs:
   network:
-    description: Target Sui network (mainnet or testnet).
+    description: |-
+      Target Sui network.
+
+      Supported values:
+      - `testnet`
+      - `mainnet`
     required: false
     default: testnet
   private_key:
-    description: Sui private key to import into the local keystore (accepted by `sui keytool import <PRIVATE_KEY> ed25519`, typically `suiprivkey...`; obtain with `sui keytool export --key-identity <SUI_ADDRESS>`). When omitted, the action only installs the CLI.
+    description: |-
+      Sui private key to import into the local keystore.
+
+      Accepted format:
+      - Compatible with `sui keytool import <PRIVATE_KEY> ed25519`
+      - Typically starts with `suiprivkey...`
+
+      Tip:
+      - Export an existing key with `sui keytool export --key-identity <SUI_ADDRESS>`
+
+      If omitted, the action installs Sui CLI only and skips wallet configuration.
     required: false
   version:
-    description: Sui CLI version tag to install.
+    description: |-
+      Sui CLI version tag to install.
+
+      If omitted, the action resolves the latest network-specific release tag from the official Sui repository.
+
+      Available releases: https://github.com/MystenLabs/sui/releases/
     required: false
-    default: mainnet-v1.68.1
+  token:
+    description: |-
+      GitHub token used to authenticate requests to the GitHub API when resolving the default Sui CLI version.
+
+      Defaults to the workflow's built-in `github.token` to avoid unauthenticated rate limits.
+    required: false
+    default: ${{ github.token }}
 
 outputs:
   rpc_url:
